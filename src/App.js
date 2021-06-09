@@ -20,7 +20,7 @@ function App() {
 
   const addThought = (thought) => {
     // function for adding thought to thoughts state array.
-    setThoughts((prev) => [...prev, thought])
+    setThoughts((prev) => [thought, ...prev])
   }
 
   return (
