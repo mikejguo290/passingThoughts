@@ -23,6 +23,9 @@ export function AddThoughtForm(props) {
       expiresAt: getNewExpirationTime(),
     }
     props.addThought(thought); 
+
+    // clear form's input after each submission to make the UX more intuitive. 
+    setText('')
   }
 
   return (
