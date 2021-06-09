@@ -3,7 +3,8 @@ import { AddThoughtForm } from './AddThoughtForm';
 import { Thought } from './Thought';
 import { generateId, getNewExpirationTime } from './utilities';
 
-export function App() {
+// once you add a short thought, it disappears in fifteen seconds.
+function App() {
   const [thoughts, setThoughts] = useState([
     {
       id: generateId(),
@@ -16,6 +17,11 @@ export function App() {
       expiresAt: getNewExpirationTime(),
     },
   ]);
+
+  const addThought = (thought) => {
+    // function for adding thought to thoughts state array.
+    setThoughts((prev) => [...prev, thought])
+  }
 
   return (
     <div className="App">
@@ -34,3 +40,4 @@ export function App() {
   );
 }
 
+export default App;
