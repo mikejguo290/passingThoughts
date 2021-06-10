@@ -14,9 +14,9 @@ export function Thought(props) {
     // useEffect to run whenever the props.thought changes, can't see how it might change however? if thought was removed, wouldn't the component simply unmount?
     // for each thoughts re rendering caused by change to thoughts in app's state, the thought passed down wouldn't be able to change. 
     // maybe it's just good practice? 
-
+    // eslint says React Hook useEffect has a missing dependency:removeThought! why? 
     const timeRemaining = thought.expiresAt - Date.now(); // more accurate than passing 15*1000 as second arg to setTimeOut()
-    const timeoutID = setTimeout(()=>{alert('this thing has expired!')}, timeRemaining);
+    const timeoutID = setTimeout(()=>{ removeThought(thought.id) }, timeRemaining);
     return ()=> { clearTimeout(timeoutID)}
   },[thought]);
 
