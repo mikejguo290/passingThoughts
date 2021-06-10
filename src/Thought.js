@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 export function Thought(props) {
   // Thought expects props thought and removeThought, here helpfully destructured from props object. 
@@ -8,6 +8,18 @@ export function Thought(props) {
     // pass thought.id up to App to affect its's thoughts state
     removeThought(thought.id);
   };
+
+  useEffect(()=>{
+    // setTimeOut sets a timer which executes a piece of code once the timer expires.
+    // useEffect to run whenever the props.thought changes, can't see how it might change however? if thought was removed, wouldn't the component simply unmount?
+    // for each thoughts re rendering caused by change to thoughts in app's state, the thought passed down wouldn't be able to change. 
+    // maybe it's just good practice? 
+
+    const timeRemaining = thought.expiresAt - Date.now(); // more accurate than passing 15*1000 as second arg to setTimeOut()
+    const timeoutID = setTimeout(()=>{alert('this thing has expired!')}, timeRemaining);
+    return ()=> { clearTimeout(timeoutID)}
+  },[thought]);
+
 
   return (
     <li className="Thought">

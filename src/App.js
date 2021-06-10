@@ -17,7 +17,7 @@ function App() {
       expiresAt: getNewExpirationTime(),
     },
   ]);
-  console.log(thoughts);
+  
   const addThought = (thought) => {
     // function for adding thought to thoughts state array.
     setThoughts((prev) => [thought, ...prev])
