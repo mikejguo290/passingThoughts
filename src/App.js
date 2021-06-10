@@ -17,10 +17,17 @@ function App() {
       expiresAt: getNewExpirationTime(),
     },
   ]);
-
+  console.log(thoughts);
   const addThought = (thought) => {
     // function for adding thought to thoughts state array.
     setThoughts((prev) => [thought, ...prev])
+  }
+
+  const removeThought=(id)=>{
+    // removeThought has to update state thoughts based on the id it receives as a callback function. 
+    setThoughts((prev) => {
+      return prev.filter((thought) => thought.id !== id);
+    });
   }
 
   return (
@@ -32,7 +39,7 @@ function App() {
         <AddThoughtForm addThought={addThought}/>
         <ul className="thoughts">
           {thoughts.map((thought) => (
-            <Thought key={thought.id} thought={thought} />
+            <Thought key={thought.id} thought={thought} removeThought={removeThought}/>
           ))}
         </ul>
       </main>
